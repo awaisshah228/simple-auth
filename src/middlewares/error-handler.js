@@ -5,7 +5,7 @@ const errorHandler = (err, req, res, next) => {
   if (err instanceof CustomError) {
     return res.status(err.statusCode).send({ errors: err.serializeErrors() });
   }
-  // console.log(err)
+  console.log(err)
  
 
   // if (err) {
@@ -13,10 +13,10 @@ const errorHandler = (err, req, res, next) => {
   //     errors: [err],
   //   });
   // }
-  return res.json(err)
-//  return res.status(400).send({
-//     errors: ["something went wrong "],
-//     err
-//   });
+  // return res.json(err)
+ return res.status(400).send({
+    errors: ["something went wrong "],
+    err
+  });
 };
 module.exports=errorHandler

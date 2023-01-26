@@ -1,21 +1,21 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
+const memberSchema = new mongoose.Schema({
+  qr_code:{
+    type: String,
+  },
   Id: {
     type: String,
-    unique: true,
   },
   cnic: {
     type: String,
-    unique: true,
+    // unique: true
   },
   name: {
     type: String,
-    unique: true,
   },
   fullName_link: {
     type: String,
-    unique: true,
   },
   hh_mobilizer: {
     type: String,
@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   registration_date: {
-    type: String,
+    type: Date,
   },
   activities: {
     type: String,
@@ -77,7 +77,6 @@ const userSchema = new mongoose.Schema({
   union_council: {
     type: String,
   },
-  
 });
 
-module.exports = mongoose.model("user", userSchema);
+module.exports = mongoose.model("member", memberSchema);

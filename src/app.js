@@ -1,11 +1,13 @@
-require('express-async-errors');
+
 const path = require('path');
 const express = require('express');
+require('express-async-errors');
 const cors = require('cors');
 const morgan = require('morgan');
 const api= require('./routes/index')
 const errorHandler=require('./middlewares/error-handler')
 const NotFoundError=require('./errors/not-found-error')
+const currentUser=require('./middlewares/current-user')
 
 
 
@@ -15,9 +17,12 @@ app.use(cors({
   origin: 'http://localhost:3000',
 }));
 app.use(morgan('combined'));
+app.use(currentUser);
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'public')));
+
+// app.use()
 
 app.use('/v1', api);
 

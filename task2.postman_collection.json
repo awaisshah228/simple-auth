@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "934fc7ad-fbf2-4de4-897b-0e09395d2ca4",
+		"name": "task2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17642930"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"hamid@gmail.com\",\r\n    \"password\": \"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/v1/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "member",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDI5ZWM5MjFmODdjZmM1ZGNkZWU1MSIsImlhdCI6MTY3NDc0NzYwNX0.pySs_-tjOFss40zFWr3poBUfK5gnT5HzT58V1aMdHQo",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"qr_code\":\"8\",\r\n    \"cnic\": \"31204-d3204802384-340238\",\r\n    \"name\": \"hamid\",\r\n    \"fullName_link\": \"hamid Ahatar\",\r\n    \"hh_mobilizer\": \"ahmadf\",\r\n    \"hh_mobilizer_link\": \"jdlfjl\",\r\n    \"serial_number\": \"12234343\",\r\n    \"registration_date\":\"\",\r\n    \"activities\":\"\",\r\n    \"phone\":\"\",\r\n    \"family_member\":\"\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/v1/member",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"member"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

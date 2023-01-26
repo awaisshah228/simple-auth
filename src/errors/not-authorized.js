@@ -1,6 +1,6 @@
 const CustomError=require('./custom-errors');
 
-export class NotAuthorizedError extends CustomError {
+ class NotAuthorizedError extends CustomError {
     statusCode = 401;
   
     constructor() {
