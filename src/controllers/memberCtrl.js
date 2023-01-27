@@ -4,7 +4,6 @@ const { generateAccessToken } = require("../utils/generateToken");
 const memberCtrl = {
   addMember: async (req, res) => {
     const {
-      Id,
       qr_code,
       cnic,
       name,
@@ -30,22 +29,16 @@ const memberCtrl = {
       dp,
       union_council,
     } = req.body;
-    let  memberCheck = await Member.findOne({qr_code}).lean();
-    const memberExist={...memberCheck} 
-    console.log(memberExist)
+    const memberExist = await Member.find({ qr_code })[0];
+    // console.log(members.cnic)
 
-    // const memberExist
-    
-    if (memberCheck) {
+    const { v4: uuidv4 } = require("uuid");
+    const Id = uuidv4();
+
+    if (memberExist) {
       throw new BadRequestError("Already member added with same qr");
     }
-    if (memberExist.cnic==cnic) {
-      throw new BadRequestError("Already member added with same cnoc");
-    }
-   
-    // console.log(memberExist)
 
-   
     const member = new Member({
       qr_code,
       Id,
@@ -77,14 +70,14 @@ const memberCtrl = {
 
     return res.json(member);
   },
-  getMember:async(req,res)=>{
-    const qr_code= req.params.qr;
-    const member= await Member.findOne({qr_code})
+  getMember: async (req, res) => {
+    const qr_code = req.params.qr;
+    const member = await Member.findOne({ qr_code });
 
-    if(!member){
+    if (!member) {
       throw new BadRequestError("member not exist with this qr code");
     }
-    res.json(member)
-  }
+    res.json(member);
+  },
 };
 module.exports = memberCtrl;

@@ -1,15 +1,19 @@
 const mongoose = require("mongoose");
+const uniqueValidator = require('mongoose-unique-validator');
+
 
 const memberSchema = new mongoose.Schema({
   qr_code:{
     type: String,
+    unique:true
   },
   Id: {
     type: String,
+    unique:true
   },
   cnic: {
     type: String,
-    // unique: true
+    unique: true
   },
   name: {
     type: String,
@@ -78,5 +82,7 @@ const memberSchema = new mongoose.Schema({
     type: String,
   },
 });
+memberSchema.plugin(uniqueValidator, { message: '{PATH} already exists!' });
+
 
 module.exports = mongoose.model("member", memberSchema);

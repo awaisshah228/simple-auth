@@ -5,18 +5,24 @@ const errorHandler = (err, req, res, next) => {
   if (err instanceof CustomError) {
     return res.status(err.statusCode).send({ errors: err.serializeErrors() });
   }
-  console.log(err)
+  // console.log(err)
  
 
-  // if (err) {
-  //   return res.status(400).send({
-  //     errors: [err],
-  //   });
-  // }
+  if (err) {
+    return res.status(400).send({
+      errors:[err.errors],
+    });
+  }
   // return res.json(err)
- return res.status(400).send({
-    errors: ["something went wrong "],
-    err
-  });
+
+  // if(err.code === 11000){
+  //   let message = Object.values(err.keyValue)[0] + " already exists."
+  //   return res.status(400).send({errors:[{message}]});
+  // }
+  
+//  return res.status(400).send({
+//     errors: ["something went wrong "],
+//     err
+//   });
 };
 module.exports=errorHandler
